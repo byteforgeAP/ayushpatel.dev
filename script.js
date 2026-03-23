@@ -539,6 +539,28 @@ if (profileCardAbout) {
     });
 }
 
+/* ============================= */
+/* HAMBURGER MENU */
+/* ============================= */
+
+const hamburger = document.getElementById("hamburger");
+const navLinksMenu = document.getElementById("navLinks");
+
+if (hamburger) {
+    hamburger.addEventListener("click", function() {
+        hamburger.classList.toggle("open");
+        navLinksMenu.classList.toggle("open");
+    });
+
+    // Close menu when a link is clicked
+    navLinksMenu.querySelectorAll("a").forEach(function(link) {
+        link.addEventListener("click", function() {
+            hamburger.classList.remove("open");
+            navLinksMenu.classList.remove("open");
+        });
+    });
+}
+
     /* Initial Run */
     handleScroll();
 
