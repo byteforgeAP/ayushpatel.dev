@@ -561,6 +561,55 @@ if (hamburger) {
     });
 }
 
+/* ============================= */
+/* ROLE CYCLE TYPEWRITER */
+/* ============================= */
+
+const roles = [
+    "Software Developer",
+    "Frontend Developer",
+    "UI/UX Developer",
+    "Game Development Enthusiast",
+    "Computer Science Student",
+    "AI/ML Enthusiast",
+    "Video Editor"
+];
+
+const roleEl = document.getElementById("roleCycle");
+
+if (roleEl) {
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeRole() {
+        const current = roles[roleIndex];
+
+        if (isDeleting) {
+            roleEl.textContent = current.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            roleEl.textContent = current.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        let speed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === current.length) {
+            // Pause at end
+            speed = 1800;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            speed = 400;
+        }
+
+        setTimeout(typeRole, speed);
+    }
+
+    typeRole();
+}
     /* Initial Run */
     handleScroll();
 

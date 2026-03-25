@@ -234,9 +234,28 @@ html {
     75%  { opacity: 0; }
     100% { opacity: 0; }
 }
-.subtitle {
-    font-size: 1.4rem;
-    opacity: 0.8;
+.role-glass-box {
+    padding: 10px 24px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: inline-block;
+}
+
+#roleCycle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    border-right: 2px solid rgba(255,255,255,0.55);
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    animation: blink 0.7s infinite;
+    min-width: 2px;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
 }
 
 .buttons {
