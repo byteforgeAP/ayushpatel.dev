@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ELEMENT REFERENCES */
     /* ============================= */
 
-    const logo         = document.getElementById("logo");
     const overlay      = document.querySelector(".scroll-overlay");
     const navLinks     = document.querySelectorAll(".nav-links a");
     const timeline     = document.querySelector(".timeline");
@@ -14,113 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ============================= */
 
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const isHomePage  = currentPage === 'index.html' || currentPage === '';
-
-    let isAtTop    = isHomePage;
-    let isAnimating = false;
-    let isHovering  = false;
-
-    /* ============================= */
-    /* LOGO SETUP FOR NON-HOME PAGES */
-    /* ============================= */
-
-    if (!isHomePage && logo) {
-        logo.innerHTML = "Ayush Patel's Portfolio";
-        logo.classList.add("glow");
-    }
-
-    /* ============================= */
-    /* LOGO ANIMATION FUNCTION */
-    /* ============================= */
-
-    function animateLogoChange(newHTML) {
-        if (!logo || isAnimating) return;
-
-        isAnimating = true;
-        logo.classList.add("fade-out");
-
-        setTimeout(() => {
-            logo.innerHTML = newHTML;
-            logo.classList.remove("fade-out");
-            logo.classList.add("fade-in");
-
-            setTimeout(() => {
-                logo.classList.remove("fade-in");
-                isAnimating = false;
-            }, 300);
-
-        }, 250);
-    }
 
     /* ============================= */
     /* SCROLL BEHAVIOR */
     /* ============================= */
 
     function handleScroll() {
-
-        // Logo change only applies on home page (where #about doesn't exist,
-        // so this block is effectively dormant — kept for if sections are ever merged back)
-        if (isHomePage) {
-            const aboutSection = document.getElementById("about");
-            if (aboutSection) {
-                const aboutRect = aboutSection.getBoundingClientRect();
-
-                if (aboutRect.top <= window.innerHeight / 2 && isAtTop) {
-                    animateLogoChange("Ayush Patel's Portfolio");
-                    logo.classList.add("glow");
-                    if (overlay) overlay.classList.add("active");
-                    isAtTop = false;
-                }
-
-                if (aboutRect.top > window.innerHeight / 2 && !isAtTop) {
-                    animateLogoChange("👋 Hello!");
-                    logo.classList.remove("glow");
-                    if (overlay) overlay.classList.remove("active");
-                    isAtTop = true;
-                }
-            }
-        }
-
         animateTimeline();
     }
 
     window.addEventListener("scroll", handleScroll);
-
-    /* ============================= */
-    /* LOGO CLICK */
-    /* ============================= */
-
-    if (logo) {
-        logo.addEventListener("click", function () {
-            if (isHomePage) {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            } else {
-                window.location.href = 'index.html';
-            }
-        });
-    }
-
-    /* ============================= */
-    /* LOGO HOVER INTERACTION (home only) */
-    /* ============================= */
-
-    if (logo && isHomePage) {
-        logo.addEventListener("mouseenter", function () {
-            if (isAtTop && !isHovering) {
-                isHovering = true;
-                logo.classList.add("glow");
-                animateLogoChange('Explore My Work <span class="arrow">↓</span>');
-            }
-        });
-
-        logo.addEventListener("mouseleave", function () {
-            if (isAtTop && isHovering) {
-                isHovering = false;
-                logo.classList.remove("glow");
-                animateLogoChange("👋 Hello!");
-            }
-        });
-    }
 
     /* ============================= */
     /* NAV LINKS — only smooth-scroll for same-page hash links */

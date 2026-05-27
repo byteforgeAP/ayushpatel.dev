@@ -1,0 +1,171 @@
+/* ============================= */
+/* HERO */
+/* ============================= */
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+    text-align: center;
+}
+
+.hero-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.greeting {
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+.hero-name {
+    font-family: 'Sora', sans-serif;
+    font-size: 5.5rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    gap: 0.01em;
+}
+
+.hero-name span {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeCycle 6s ease-in-out infinite;
+    animation-fill-mode: both;
+}
+
+.hero-name span:nth-child(1)  { animation-delay: 0.0s; }
+.hero-name span:nth-child(2)  { animation-delay: 0.2s; }
+.hero-name span:nth-child(3)  { animation-delay: 0.4s; }
+.hero-name span:nth-child(4)  { animation-delay: 0.6s; }
+.hero-name span:nth-child(5)  { animation-delay: 0.8s; }
+.hero-name span:nth-child(6)  { animation-delay: 1.0s; }
+.hero-name span:nth-child(7)  { animation-delay: 1.2s; }
+.hero-name span:nth-child(8)  { animation-delay: 1.4s; }
+.hero-name span:nth-child(9)  { animation-delay: 1.6s; }
+.hero-name span:nth-child(10) { animation-delay: 1.8s; }
+.hero-name span:nth-child(11) { animation-delay: 2.0s; }
+
+@keyframes fadeCycle {
+    0%   { opacity: 0; }
+    15%  { opacity: 1; }
+    60%  { opacity: 1; }
+    75%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.role-glass-box {
+    padding: 10px 24px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: inline-block;
+}
+
+#roleCycle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    border-right: 2px solid rgba(255,255,255,0.55);
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    animation: blink 0.7s infinite;
+    min-width: 2px;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.buttons {
+    display: flex;
+    gap: 14px;
+    margin-top: 8px;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.4s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    background: rgba(0,245,255,0.15);
+    border: 1px solid rgba(0,245,255,0.6);
+    box-shadow: 0 0 20px rgba(0,245,255,0.4);
+}
+
+.hero-social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.4s ease;
+    white-space: nowrap;
+}
+
+.hero-social-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(0,245,255,0.15);
+    border-color: rgba(0,245,255,0.6);
+    box-shadow: 0 0 20px rgba(0,245,255,0.4);
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 0 5%;
+        padding-top: 160px;
+        align-items: center;
+    }
+
+    .hero-name {
+        font-size: 3rem;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    button,
+    .hero-social-btn {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero-name {
+        font-size: 2.2rem;
+    }
+}

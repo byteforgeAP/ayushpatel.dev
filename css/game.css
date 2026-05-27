@@ -1,0 +1,331 @@
+/* ============================= */
+/* GAME SECTION */
+/* ============================= */
+
+.game-section {
+    padding: 140px 10%;
+}
+
+.game-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* ============================= */
+/* SIDE PANELS */
+/* ============================= */
+
+.game-info-panel,
+.game-legend-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 160px;
+}
+
+.game-stat-card {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 18px 24px;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.game-stat-card:hover {
+    border-color: rgba(0,245,255,0.4);
+    box-shadow: 0 0 18px rgba(0,245,255,0.15);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: rgba(0,245,255,0.7);
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    display: block;
+    font-family: 'Sora', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.stat-value.pop {
+    transform: scale(1.3);
+    color: #00f5ff;
+}
+
+/* ============================= */
+/* CONTROLS INFO */
+/* ============================= */
+
+.game-controls-info {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 18px 24px;
+    text-align: center;
+}
+
+.controls-title,
+.tips-title {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: rgba(0,245,255,0.7);
+    margin-bottom: 14px;
+}
+
+.key-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.key-row {
+    display: flex;
+    gap: 6px;
+}
+
+kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 3px solid rgba(255,255,255,0.15);
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.key-label {
+    font-size: 0.68rem;
+    opacity: 0.45;
+    margin-top: 8px;
+}
+
+/* ============================= */
+/* LEGEND PANEL */
+/* ============================= */
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 14px 20px;
+    font-size: 0.85rem;
+}
+
+.legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.food-dot  { background: #ff6b6b; box-shadow: 0 0 8px #ff6b6b; }
+.bonus-dot { background: #ffd700; box-shadow: 0 0 8px #ffd700; }
+.snake-dot { background: #00f5ff; box-shadow: 0 0 8px #00f5ff; }
+
+.legend-pts {
+    color: rgba(0,245,255,0.7);
+    font-size: 0.75rem;
+    margin-left: 4px;
+}
+
+.game-tips {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 18px 20px;
+}
+
+.game-tips ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.game-tips ul li {
+    font-size: 0.78rem;
+    opacity: 0.65;
+    padding-left: 14px;
+    position: relative;
+}
+
+.game-tips ul li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: rgba(0,245,255,0.6);
+}
+
+/* ============================= */
+/* CANVAS */
+/* ============================= */
+
+.game-canvas-wrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(0,245,255,0.25);
+    box-shadow: 0 0 40px rgba(0,245,255,0.1), inset 0 0 30px rgba(0,0,0,0.4);
+}
+
+#snakeCanvas {
+    display: block;
+    background: rgba(10,15,28,0.95);
+}
+
+/* ============================= */
+/* OVERLAY */
+/* ============================= */
+
+.game-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10,15,28,0.88);
+    backdrop-filter: blur(10px);
+    transition: opacity 0.4s ease;
+    z-index: 10;
+}
+
+.game-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.overlay-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.overlay-icon {
+    font-size: 3rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+
+.overlay-content h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.overlay-content p {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    max-width: 260px;
+    line-height: 1.6;
+}
+
+/* ============================= */
+/* MOBILE CONTROLS */
+/* ============================= */
+
+.mobile-controls {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 30px;
+}
+
+.mobile-row {
+    display: flex;
+    gap: 6px;
+}
+
+.mobile-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: white;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.mobile-btn:active {
+    transform: scale(0.92);
+    background: rgba(0,245,255,0.2);
+    border-color: rgba(0,245,255,0.6);
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .game-section {
+        padding: 80px 5%;
+    }
+
+    .game-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-info-panel,
+    .game-legend-panel {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        min-width: unset;
+        width: 100%;
+    }
+
+    .game-stat-card {
+        min-width: 100px;
+    }
+
+    #snakeCanvas {
+        width: 320px;
+        height: 320px;
+    }
+
+    .mobile-controls {
+        display: flex;
+    }
+}
+
+@media (max-width: 400px) {
+    #snakeCanvas {
+        width: 280px;
+        height: 280px;
+    }
+}
