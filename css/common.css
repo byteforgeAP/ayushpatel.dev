@@ -77,6 +77,12 @@ html {
     z-index: 1000;
 }
 
+.navbar.nav-hidden {
+    transform: translateX(-50%) translateY(-220%);
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* Profile avatar (left side of pill) */
 .nav-avatar-link {
     display: flex;

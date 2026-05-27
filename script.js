@@ -15,6 +15,45 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
     /* ============================= */
+    /* NAVBAR — title pushes pill up, spring drop on return */
+    /* ============================= */
+
+    const navbar  = document.querySelector(".navbar");
+    const trigger = document.querySelector(".section-header");
+
+    if (navbar && trigger) {
+        let navHidden = false;
+
+        // Pre-calculate scroll positions once — avoids per-scroll getBoundingClientRect jitter
+        const navBtm = navbar.getBoundingClientRect().bottom;
+        const navTop = navbar.getBoundingClientRect().top;
+        const absTop = trigger.getBoundingClientRect().top  + window.scrollY;
+        const absBot = trigger.getBoundingClientRect().bottom + window.scrollY;
+
+        const hideAt = absTop - navBtm - 20;   // start push 20px before title reaches navbar
+        const showAt = absBot - navTop  + 20;   // reveal 20px after title fully clears navbar
+
+        function updateNavVisibility() {
+            const y = window.scrollY;
+
+            if (y > hideAt && y < showAt) {
+                if (!navHidden) {
+                    navbar.style.transition = "transform 0.2s cubic-bezier(0.4, 0, 1, 1), opacity 0.15s ease";
+                    navbar.classList.add("nav-hidden");
+                    navHidden = true;
+                }
+            } else if (navHidden) {
+                navbar.style.transition = "transform 0.7s cubic-bezier(0.34, 2.2, 0.58, 1), opacity 0.2s ease";
+                navbar.classList.remove("nav-hidden");
+                navHidden = false;
+            }
+        }
+
+        window.addEventListener("scroll", updateNavVisibility, { passive: true });
+        updateNavVisibility();
+    }
+
+    /* ============================= */
     /* SCROLL BEHAVIOR */
     /* ============================= */
 
